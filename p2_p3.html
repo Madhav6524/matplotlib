@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Matplotlib & Statistics Tutorial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      color: black;
+
+    }
+    header {
+      background-color: #0077B5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+    }
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #0077B5;
+    }
+    pre {
+      background: #f4f1f1;
+      padding: 15px;
+      overflow-x: auto;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      color: black;
+    }
+    button {
+      margin-top: 10px;
+      background-color: #0077B5;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1> Statistics Tutorial</h1>
+  <p>Learn how to visualize and analyze data using Python.</p>
+  <a href="index.html">Home</a>
+</header>
+
+<main>
+
+ 
+
+  <!-- Section 2 -->
+  <section>
+    <h2>2. Central Tendency: Sit-up Scores</h2>
+    <p style="color: black;">This example shows how to calculate Mean, Median, and Mode for sit-up performance data.</p>
+    <pre><code>import numpy as np
+from scipy import stats
+
+# Sit-up data
+situps = np.array([2, 2, 6, 6, 12, 12, 14, 15, 15, 15, 24, 25])
+
+# Mean
+mean = np.mean(situps)
+
+# Median
+median = np.median(situps)
+
+# Mode
+mode = stats.mode(situps, keepdims=True)
+
+# Display results
+print(f"Mean: {mean}")
+print(f"Median: {median}")
+print(f"Mode: {mode.mode[0]} (Frequency: {mode.count[0]})")</code></pre>
+    <button onclick="copyCode(this)">Copy Code</button>
+  </section>
+
+  <!-- Section 3 -->
+  <section>
+    <h2>3. Measures of Dispersion: Company A vs Company B</h2>
+    <p>This example calculates Range, MAD, Standard Deviation, Variance, and IQR for two companies' profit data.</p>
+    <pre><code>import numpy as np
+import pandas as pd
+
+# Profit data in millions
+company_a = np.array([43, 44, 0, 25, 20, 35, -8, 13, -10, -8, 32, 11, -8, 21])
+company_b = np.array([17, 15, 12, 17, 15, 18, 12, 15, 12, 13, 18, 18, 14, 14])
+
+# Create DataFrame
+df = pd.DataFrame({
+    'Company A': company_a,
+    'Company B': company_b
+})
+
+# Mean
+mean_a = np.mean(company_a)
+mean_b = np.mean(company_b)
+
+# Range
+range_a = np.ptp(company_a)
+range_b = np.ptp(company_b)
+
+# Mean Absolute Deviation
+mad_a = np.mean(np.abs(company_a - mean_a))
+mad_b = np.mean(np.abs(company_b - mean_b))
+
+# Standard Deviation
+std_a = np.std(company_a)
+std_b = np.std(company_b)
+
+# Variance
+var_a = np.var(company_a)
+var_b = np.var(company_b)
+
+# Interquartile Range
+q1_a = np.percentile(company_a, 25)
+q3_a = np.percentile(company_a, 75)
+iqr_a = q3_a - q1_a
+
+q1_b = np.percentile(company_b, 25)
+q3_b = np.percentile(company_b, 75)
+iqr_b = q3_b - q1_b
+
+# Display Results
+results = pd.DataFrame({
+    'Measure': ['Mean', 'Range', 'MAD', 'Standard Deviation', 'Variance', 'IQR'],
+    'Company A': [mean_a, range_a, mad_a, std_a, var_a, iqr_a],
+    'Company B': [mean_b, range_b, mad_b, std_b, var_b, iqr_b]
+})
+
+print(results)</code></pre>
+    <button onclick="copyCode(this)">Copy Code</button>
+  </section>
+
+</main>
+
+<script>
+  function copyCode(button) {
+    const code = button.previousElementSibling.innerText;
+    navigator.clipboard.writeText(code);
+    button.innerText = "Copied!";
+    setTimeout(() => (button.innerText = "Copy Code"), 2000);
+  }
+</script>
+
+</body>
+</html>
